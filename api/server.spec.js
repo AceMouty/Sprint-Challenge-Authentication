@@ -34,8 +34,37 @@ describe("POST /register", () => {
     it("Should register a user and come back in JSON format",async () => {
       const newUser = await request(server)
                             .post('/api/auth/register')
-                            .send({username: "John Doe", password: "Test123"})
+                            .send({username: "John Doe", password: "Test123!"})
       expect(newUser.type).toMatch(/json/i);
     })
+  })
+})
+
+describe("POST /login", () => {
+  
+  describe("Login a user", () => {
+    
+    it('Should login a user and respond with the correct status code', async () => {
+      const user = await request(server)
+                         .post('/api/auth/login')
+                         .send({username: "John Doe", password: "Test123!"})
+      expect(user.status).toBe(200);
+    })
+
+    it('Should login a user and respond with json', async () => {
+      const user = await request(server)
+                         .post('/api/auth/login')
+                         .send({username: "John Doe", password: "Test123!"})
+      expect(user.type).toMatch(/json/i);
+    })
+
+    it('Should login a user and respond with a token', async () => {
+      const user = await request(server)
+                         .post('/api/auth/login')
+                         .send({username: "John Doe", password: "Test123!"})
+      expect(user.body).toHaveProperty('token');
+      expect(user.body.token).not.toHaveLength(0);
+    })
+
   })
 })
