@@ -3,7 +3,6 @@ const db = require('../dbConfig');
 module.exports = {
   createUser,
   findBy,
-  getUsers,
 }
 
 async function createUser(userObj){
@@ -13,4 +12,11 @@ async function createUser(userObj){
 
 function findBy(filter){
   return db('users').where(filter)
+}
+
+function findById(id) {
+  return db('users')
+    .select('username', "id")
+    .where({ id })
+    .first();
 }

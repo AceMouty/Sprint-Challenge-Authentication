@@ -13,7 +13,6 @@ router.post('/register', check.checkRegister, (req, res) => {
   
   // Grab the incoming req body
   const reqUser = req.body
-  console.log(reqUser)
   
   // Hash the password for the body
   const newUser = {
