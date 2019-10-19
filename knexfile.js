@@ -9,4 +9,16 @@ module.exports = {
     },
     seeds: { directory: './database/seeds' },
   },
+   // inserted for the use of testing
+
+   testing: {
+    client: 'sqlite3',
+    connection: {
+      filename: './database/test.db3',
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/testing/migrations',
+    },
+  },
 };
